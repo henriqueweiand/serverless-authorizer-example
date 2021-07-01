@@ -1,0 +1,39 @@
+service: auth-sls
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  authorizerFunc:
+    handler: src/authorizer/handler.handler
+
+  public:
+    handler: src/handler.public
+    events:
+      - http:
+          path: public
+          method: any
+          cors:
+            origins:
+              - "*"
+            headers:
+              - Content-Type
+              - Authorization
+
+  private:
+    handler: src/handler.private
+    events:
+      - http:
+          path: private
+          method: any
+          authorizer: authorizerFunc
+          cors:
+            origins:
+              - "*"
+            headers:
+              - Content-Type
+              - Authorization
