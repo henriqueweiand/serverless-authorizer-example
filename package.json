@@ -1,5 +1,5 @@
 {
-  "name": "auth-sls",
+  "name": "serverless-authorizer-with-cognito-example",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",

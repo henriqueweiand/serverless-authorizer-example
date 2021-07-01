@@ -1,5 +1,3 @@
-const { buildIAMPolicy } = require("../lib/util");
-
 const jsonwebtoken = require("jsonwebtoken");
 const jwkToPem = require("jwk-to-pem");
 const jws = require("jws");

@@ -1,8 +1,9 @@
-service: auth-sls
+service: serverless-authorizer-with-cognito-example
 
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: ${opt:stage, "dev"}
 
 plugins:
   - serverless-offline
@@ -10,9 +11,11 @@ plugins:
 functions:
   authorizerFunc:
     handler: src/authorizer/handler.handler
+    name: ${self:service}-${self:provider.stage}-authorizer
 
   public:
     handler: src/handler.public
+    name: ${self:service}-${self:provider.stage}-public
     events:
       - http:
           path: public
@@ -26,6 +29,7 @@ functions:
 
   private:
     handler: src/handler.private
+    name: ${self:service}-${self:provider.stage}-private
     events:
       - http:
           path: private

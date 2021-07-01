@@ -1,4 +1,4 @@
-# serverless-authorizer-example
+# serverless-authorizer-with-cognito-example
 
 This is a basic example of authorizer using Serverless Framework and Cognito
 
